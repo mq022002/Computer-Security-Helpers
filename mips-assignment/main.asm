@@ -1,0 +1,103 @@
+.data   
+prompt1:        .asciiz "Enter the first integer: "
+prompt2:        .asciiz "Enter the second integer: "
+label_large:    .asciiz "Larger integer: "
+label_small:    .asciiz "Smaller integer: "
+label_quot:     .asciiz "Quotient: "
+label_rem:      .asciiz "Remainder: "
+newline:        .asciiz "\n"
+error_div0:     .asciiz "Error: Division by zero is undefined.\n"
+data_mem:       .word   0, 0, 0, 0
+
+.text   
+                .globl  main
+main:           
+    li      $v0,            4
+    la      $a0,            prompt1
+    syscall 
+    li      $v0,            5
+    syscall 
+    move    $t0,            $v0
+
+    li      $v0,            4
+    la      $a0,            prompt2
+    syscall 
+    li      $v0,            5
+    syscall 
+    move    $t1,            $v0
+
+    slt     $t2,            $t0,            $t1
+    beq     $t2,            $zero,          store_large_first
+    sw      $t0,            data_mem
+    sw      $t1,            data_mem+4
+    j       check_division
+
+store_large_first:
+    sw      $t1,            data_mem
+    sw      $t0,            data_mem+4
+
+check_division: 
+    lw      $t3,            data_mem+4
+    lw      $t4,            data_mem
+    beq     $t4,            $zero,          handle_div0
+
+    div     $t3,            $t4
+    mflo    $t5
+    mfhi    $t6
+    sw      $t5,            data_mem+8
+    sw      $t6,            data_mem+12
+    j       print_results
+
+handle_div0:    
+    sw      $zero,          data_mem+8
+    sw      $zero,          data_mem+12
+    li      $v0,            4
+    la      $a0,            error_div0
+    syscall 
+
+print_results:  
+    li      $v0,            4
+    la      $a0,            label_large
+    syscall 
+    lw      $a0,            data_mem+4
+    li      $v0,            1
+    syscall 
+    li      $v0,            4
+    la      $a0,            newline
+    syscall 
+
+    li      $v0,            4
+    la      $a0,            label_small
+    syscall 
+    lw      $a0,            data_mem
+    li      $v0,            1
+    syscall 
+    li      $v0,            4
+    la      $a0,            newline
+    syscall 
+
+    beq     $t4,            $zero,          exit_program
+
+    li      $v0,            4
+    la      $a0,            label_quot
+    syscall 
+    lw      $a0,            data_mem+8
+    li      $v0,            1
+    syscall 
+    li      $v0,            4
+    la      $a0,            newline
+    syscall 
+
+    li      $v0,            4
+    la      $a0,            label_rem
+    syscall 
+    lw      $a0,            data_mem+12
+    li      $v0,            1
+    syscall 
+    li      $v0,            4
+    la      $a0,            newline
+    syscall 
+
+exit_program:   
+    li      $v0,            10
+    syscall 
