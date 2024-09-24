@@ -64,7 +64,7 @@ print_results:
     ori     $a0,            $a0,            0x0035
     syscall 
     lw      $a0,            data_mem+4
-    li      $v0,            1
+    addi    $v0,            $zero,          1
     syscall 
     addi    $v0,            $zero,          4
     lui     $a0,            0x1001
@@ -76,7 +76,7 @@ print_results:
     ori     $a0,            $a0,            0x0046
     syscall 
     lw      $a0,            data_mem
-    li      $v0,            1
+    addi    $v0,            $zero,          1
     syscall 
     addi    $v0,            $zero,          4
     lui     $a0,            0x1001
@@ -90,7 +90,7 @@ print_results:
     ori     $a0,            $a0,            0x0058
     syscall 
     lw      $a0,            data_mem+8
-    li      $v0,            1
+    addi    $v0,            $zero,          1
     syscall 
     addi    $v0,            $zero,          4
     lui     $a0,            0x1001
@@ -102,7 +102,7 @@ print_results:
     ori     $a0,            $a0,            0x0063
     syscall 
     lw      $a0,            data_mem+12
-    li      $v0,            1
+    addi    $v0,            $zero,          1
     syscall 
     addi    $v0,            $zero,          4
     lui     $a0,            0x1001
@@ -110,5 +110,5 @@ print_results:
     syscall 
 
 exit_program:   
-    li      $v0,            10
+    addi    $v0,            $zero,          10
     syscall 
