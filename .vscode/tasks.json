@@ -1,0 +1,39 @@
+{
+  "version": "2.0.0",
+  "tasks": [
+    {
+      "label": "iverilog",
+      "type": "shell",
+      "command": "iverilog -o \"${fileDirname}/${fileBasenameNoExtension}.out\" \"${file}\" && vvp \"${fileDirname}/${fileBasenameNoExtension}.out\"",
+      "group": {
+        "kind": "build",
+        "isDefault": true
+      },
+      "presentation": {
+        "reveal": "always"
+      },
+      "problemMatcher": [],
+      "options": {
+        "shell": {
+          "executable": "${defaultShell}",
+          "args": []
+        }
+      },
+      "windows": {
+        "command": "iverilog -o \"${fileDirname}\\${fileBasenameNoExtension}.out\" \"${file}\" && vvp \"${fileDirname}\\${fileBasenameNoExtension}.out\"",
+        "options": {
+          "shell": {
+            "executable": "cmd.exe",
+            "args": ["/d", "/c"]
+          }
+        }
+      },
+      "linux": {
+        "command": "iverilog -o \"${fileDirname}/${fileBasenameNoExtension}.out\" \"${file}\" && vvp \"${fileDirname}/${fileBasenameNoExtension}.out\""
+      },
+      "osx": {
+        "command": "iverilog -o \"${fileDirname}/${fileBasenameNoExtension}.out\" \"${file}\" && vvp \"${fileDirname}/${fileBasenameNoExtension}.out\""
+      }
+    }
+  ]
+}
