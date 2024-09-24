@@ -55,7 +55,7 @@ handle_div0:
     sw      $zero,          data_mem+12
     addi    $v0,            $zero,          4
     lui     $a0,            0x1001
-    ori     $a0,            $a0,            0x0078
+    ori     $a0,            $a0,            0x0071
     syscall 
 
 print_results:  
