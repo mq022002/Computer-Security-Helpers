@@ -15,17 +15,6 @@
     ## $t5       quotient
     ## $t6       remainder
 
-.data   
-prompt1:        .asciiz "Enter the first integer: "
-prompt2:        .asciiz "Enter the second integer: "
-label_large:    .asciiz "Larger integer: "
-label_small:    .asciiz "Smaller integer: "
-label_quot:     .asciiz "Quotient: "
-label_rem:      .asciiz "Remainder: "
-newline:        .asciiz "\n"
-error_div0:     .asciiz "Error: Division by zero is undefined.\n"
-data_mem:       .word   0, 0, 0, 0
-
 .text   
                 .globl  main
 main:           
@@ -143,3 +132,15 @@ print_results:
 exit_program:   
     addi    $v0,            $zero,          10
     syscall 
+
+
+.data   
+prompt1:        .asciiz "Enter the first integer: "
+prompt2:        .asciiz "Enter the second integer: "
+label_large:    .asciiz "Larger integer: "
+label_small:    .asciiz "Smaller integer: "
+label_quot:     .asciiz "Quotient: "
+label_rem:      .asciiz "Remainder: "
+newline:        .asciiz "\n"
+error_div0:     .asciiz "Error: Division by zero is undefined.\n"
+data_mem:       .word   0, 0, 0, 0
