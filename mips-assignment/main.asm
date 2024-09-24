@@ -70,8 +70,9 @@ print_results:
     la      $a0,            newline
     syscall 
 
-    li      $v0,            4
-    la      $a0,            label_small
+    addi    $v0,            $zero,          4
+    lui     $a0,            0x1001
+    ori     $a0,            $a0,            0x0046
     syscall 
     lw      $a0,            data_mem
     li      $v0,            1
