@@ -66,8 +66,9 @@ print_results:
     lw      $a0,            data_mem+4
     li      $v0,            1
     syscall 
-    li      $v0,            4
-    la      $a0,            newline
+    addi    $v0,            $zero,          4
+    lui     $a0,            0x1001
+    ori     $a0,            $a0,            0x006F
     syscall 
 
     addi    $v0,            $zero,          4
@@ -77,8 +78,9 @@ print_results:
     lw      $a0,            data_mem
     li      $v0,            1
     syscall 
-    li      $v0,            4
-    la      $a0,            newline
+    addi    $v0,            $zero,          4
+    lui     $a0,            0x1001
+    ori     $a0,            $a0,            0x006F
     syscall 
 
     beq     $t4,            $zero,          exit_program
@@ -90,8 +92,9 @@ print_results:
     lw      $a0,            data_mem+8
     li      $v0,            1
     syscall 
-    li      $v0,            4
-    la      $a0,            newline
+    addi    $v0,            $zero,          4
+    lui     $a0,            0x1001
+    ori     $a0,            $a0,            0x006F
     syscall 
 
     addi    $v0,            $zero,          4
@@ -101,8 +104,9 @@ print_results:
     lw      $a0,            data_mem+12
     li      $v0,            1
     syscall 
-    li      $v0,            4
-    la      $a0,            newline
+    addi    $v0,            $zero,          4
+    lui     $a0,            0x1001
+    ori     $a0,            $a0,            0x006F
     syscall 
 
 exit_program:   
