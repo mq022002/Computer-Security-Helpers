@@ -59,8 +59,9 @@ handle_div0:
     syscall 
 
 print_results:  
-    li      $v0,            4
-    la      $a0,            label_large
+    addi    $v0,            $zero,          4
+    lui     $a0,            0x1001
+    ori     $a0,            $a0,            0x0035
     syscall 
     lw      $a0,            data_mem+4
     li      $v0,            1
