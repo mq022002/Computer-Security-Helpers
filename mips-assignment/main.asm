@@ -12,19 +12,21 @@ data_mem:       .word   0, 0, 0, 0
 .text   
                 .globl  main
 main:           
-    li      $v0,            4
-    la      $a0,            prompt1
+    addi    $v0,            $zero,          4
+    lui     $a0,            0x1001
+    ori     $a0,            $a0,            0x0000
     syscall 
-    li      $v0,            5
+    addi    $v0,            $zero,          5
     syscall 
-    move    $t0,            $v0
+    add     $t0,            $v0,            $zero
 
-    li      $v0,            4
-    la      $a0,            prompt2
+    addi    $v0,            $zero,          4
+    lui     $a0,            0x1001
+    ori     $a0,            $a0,            0x001A
     syscall 
-    li      $v0,            5
+    addi    $v0,            $zero,          5
     syscall 
-    move    $t1,            $v0
+    add     $t1,            $v0,            $zero
 
     slt     $t2,            $t0,            $t1
     beq     $t2,            $zero,          store_large_first
