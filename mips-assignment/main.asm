@@ -53,8 +53,9 @@ check_division:
 handle_div0:    
     sw      $zero,          data_mem+8
     sw      $zero,          data_mem+12
-    li      $v0,            4
-    la      $a0,            error_div0
+    addi    $v0,            $zero,          4
+    lui     $a0,            0x1001
+    ori     $a0,            $a0,            0x0078
     syscall 
 
 print_results:  
