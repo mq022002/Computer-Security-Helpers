@@ -2,30 +2,6 @@ import java.util.Scanner;
 
 public class MainProgram {
 
-    private static final String[] SUBSTITUTION = {
-            "1100",
-            "0110",
-            "1001",
-            "0100",
-            "1111",
-            "0011",
-            "1010",
-            "0001",
-            "1101",
-            "1110",
-            "0111",
-            "0101",
-            "0010",
-            "1000",
-            "0000",
-            "1011"
-    };
-
-    public static String substitute(String fourBits) {
-        int index = Integer.parseInt(fourBits, 2);
-        return SUBSTITUTION[index];
-    }
-
     public static byte[] hexStringToByteArray(String s) {
         int len = s.length();
         if (len % 2 != 0) {
@@ -55,8 +31,8 @@ public class MainProgram {
             String highNibble = String.format("%4s", Integer.toBinaryString((currentByte >> 4) & 0x0F)).replace(' ',
                     '0');
             String lowNibble = String.format("%4s", Integer.toBinaryString(currentByte & 0x0F)).replace(' ', '0');
-            String substitutedHigh = substitute(highNibble);
-            String substitutedLow = substitute(lowNibble);
+            String substitutedHigh = SubstitutionCipher.substitute(highNibble);
+            String substitutedLow = SubstitutionCipher.substitute(lowNibble);
             String combined = substitutedHigh + substitutedLow;
             ciphertext[i] = (byte) Integer.parseInt(combined, 2);
         }
@@ -73,12 +49,12 @@ public class MainProgram {
             String lowNibble = String.format("%4s", Integer.toBinaryString(currentByte & 0x0F)).replace(' ', '0');
 
             String counterBinary = String.format("%4s", Integer.toBinaryString(counter)).replace(' ', '0');
-            String encryptedCounterHigh = substitute(counterBinary);
+            String encryptedCounterHigh = SubstitutionCipher.substitute(counterBinary);
             String encryptedHigh = xorBits(encryptedCounterHigh, highNibble);
             counter = (counter + 1) & 0x0F;
 
             counterBinary = String.format("%4s", Integer.toBinaryString(counter)).replace(' ', '0');
-            String encryptedCounterLow = substitute(counterBinary);
+            String encryptedCounterLow = SubstitutionCipher.substitute(counterBinary);
             String encryptedLow = xorBits(encryptedCounterLow, lowNibble);
             counter = (counter + 1) & 0x0F;
 
@@ -97,10 +73,10 @@ public class MainProgram {
                     '0');
             String lowNibble = String.format("%4s", Integer.toBinaryString(currentByte & 0x0F)).replace(' ', '0');
             String xoredHigh = xorBits(previousCipher, highNibble);
-            String substitutedHigh = substitute(xoredHigh);
+            String substitutedHigh = SubstitutionCipher.substitute(xoredHigh);
             previousCipher = substitutedHigh;
             String xoredLow = xorBits(previousCipher, lowNibble);
-            String substitutedLow = substitute(xoredLow);
+            String substitutedLow = SubstitutionCipher.substitute(xoredLow);
             previousCipher = substitutedLow;
             String combined = substitutedHigh + substitutedLow;
             ciphertext[i] = (byte) Integer.parseInt(combined, 2);
