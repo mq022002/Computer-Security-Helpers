@@ -45,9 +45,9 @@ public class MainProgram {
         byte[] cbcCipher = CBCModeEncryption.cbcEncrypt(ivBinary, plaintext);
 
         System.out.println("Plaintext: " + plaintextHex.toLowerCase());
-        System.out.println("ECB Ciphertext: " + byteArrayToHexString(ecbCipher).toLowerCase());
-        System.out.println("CTR Ciphertext: " + byteArrayToHexString(ctrCipher).toLowerCase());
-        System.out.println("CBC Ciphertext: " + byteArrayToHexString(cbcCipher).toLowerCase());
+        System.out.println("ECB Ciphertext, in hex: " + byteArrayToHexString(ecbCipher).toLowerCase());
+        System.out.println("CTR Ciphertext, in hex: " + byteArrayToHexString(ctrCipher).toLowerCase());
+        System.out.println("CBC Ciphertext, in hex: " + byteArrayToHexString(cbcCipher).toLowerCase());
 
         scanner.close();
     }
