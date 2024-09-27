@@ -24,31 +24,6 @@ public class MainProgram {
         return sb.toString();
     }
 
-    public static byte[] ctrEncrypt(String iv, byte[] plaintext) {
-        byte[] ciphertext = new byte[plaintext.length];
-        int counter = Integer.parseInt(iv, 16) & 0x0F;
-        for (int i = 0; i < plaintext.length; i++) {
-            byte currentByte = plaintext[i];
-            String highNibble = String.format("%4s", Integer.toBinaryString((currentByte >> 4) & 0x0F)).replace(' ',
-                    '0');
-            String lowNibble = String.format("%4s", Integer.toBinaryString(currentByte & 0x0F)).replace(' ', '0');
-
-            String counterBinary = String.format("%4s", Integer.toBinaryString(counter)).replace(' ', '0');
-            String encryptedCounterHigh = SubstitutionCipher.substitute(counterBinary);
-            String encryptedHigh = xorBits(encryptedCounterHigh, highNibble);
-            counter = (counter + 1) & 0x0F;
-
-            counterBinary = String.format("%4s", Integer.toBinaryString(counter)).replace(' ', '0');
-            String encryptedCounterLow = SubstitutionCipher.substitute(counterBinary);
-            String encryptedLow = xorBits(encryptedCounterLow, lowNibble);
-            counter = (counter + 1) & 0x0F;
-
-            String combined = encryptedHigh + encryptedLow;
-            ciphertext[i] = (byte) Integer.parseInt(combined, 2);
-        }
-        return ciphertext;
-    }
-
     public static byte[] cbcEncrypt(String iv, byte[] plaintext) {
         byte[] ciphertext = new byte[plaintext.length];
         String previousCipher = iv;
@@ -96,7 +71,7 @@ public class MainProgram {
         String ivBinary = String.format("%4s", Integer.toBinaryString(Integer.parseInt(ivHex, 16))).replace(' ', '0');
 
         byte[] ecbCipher = ECBModeEncryption.ecbEncrypt(plaintext);
-        byte[] ctrCipher = ctrEncrypt(ivHex, plaintext);
+        byte[] ctrCipher = CTRModeEncryption.ctrEncrypt(ivHex, plaintext);
         byte[] cbcCipher = cbcEncrypt(ivBinary, plaintext);
 
         System.out.println("Plaintext: " + plaintextHex.toLowerCase());
