@@ -8,7 +8,8 @@ This project implements a 4-bit substitution cipher to encrypt an array of bytes
 
 - Java JDK
 
-```https://www.oracle.com/java/technologies/downloads/
+```
+https://www.oracle.com/java/technologies/downloads/
 
 ```
 
