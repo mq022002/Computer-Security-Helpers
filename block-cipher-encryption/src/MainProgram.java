@@ -1,7 +1,20 @@
 import java.util.Scanner;
 
+/**
+ * This class provides methods for converting between hexadecimal strings and
+ * byte arrays.
+ * It also includes the main method, which is the entry point of the program.
+ *
+ * @author Matthew Quijano
+ */
 public class MainProgram {
 
+    /**
+     * Converts a hexadecimal string to a byte array.
+     *
+     * @param s the hexadecimal string to be converted
+     * @return the byte array representation of the hexadecimal string
+     */
     public static byte[] hexStringToByteArray(String s) {
         int len = s.length();
         if (len % 2 != 0) {
@@ -16,6 +29,12 @@ public class MainProgram {
         return data;
     }
 
+    /**
+     * Converts a byte array to a hexadecimal string representation.
+     *
+     * @param bytes the byte array to be converted
+     * @return the hexadecimal string representation of the byte array
+     */
     public static String byteArrayToHexString(byte[] bytes) {
         StringBuilder sb = new StringBuilder();
         for (byte b : bytes) {
@@ -24,6 +43,16 @@ public class MainProgram {
         return sb.toString();
     }
 
+    /**
+     * The main method is the entry point of the program.
+     * It prompts the user to enter plaintext in hexadecimal format and an IV
+     * (Initialization Vector) in hexadecimal format.
+     * It then performs encryption using three different modes: ECB (Electronic
+     * Codebook), CTR (Counter), and CBC (Cipher Block Chaining).
+     * The ciphertexts generated using each mode are displayed on the console.
+     *
+     * @param args The command-line arguments passed to the program.
+     */
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
 
