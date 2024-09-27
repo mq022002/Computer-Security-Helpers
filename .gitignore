@@ -1,3 +1,4 @@
+### VisualStudio.gitignore ###
 # VS Code files for those working on multiple tools
 .vscode/*
 # !.vscode/settings.json
@@ -6,5 +7,10 @@
 !.vscode/extensions.json
 *.code-workspace
 
-# Verilog
+### Verilog ###
 *.out
+
+### Java.gitignore ###
+
+## Compiled class file
+*.class
