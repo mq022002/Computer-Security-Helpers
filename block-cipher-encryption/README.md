@@ -2,9 +2,7 @@
 
 ## Overview
 
-A 4-bit substitution cipher to encrypt an array of bytes
-(i.e. array of 4 bits). The substitution cipher maps each 4-bit input block to a different
-4-bit output block.
+This project implements a 4-bit substitution cipher to encrypt an array of bytes. Each byte (8 bits) is divided into two 4-bit blocks (nibbles), and the substitution cipher maps each 4-bit input block to a different 4-bit output block.
 
 ## System Requirements
 
@@ -28,9 +26,12 @@ VS Marketplace Link: https://marketplace.visualstudio.com/items?itemName=vscjava
 
 ## Local Instance Instructions
 
-1. Unzip this folder
+1. Unzip this folder.
 2. Included a settings.json inside of block-cipher-encryption/.vscode to streamline the process of running Java files.
-3. In block-cipher-encryption/src, run MainProgram.
+3. Open a terminal/command prompt.
+4. Navigate to the `block-cipher-encryption/src` directory using the `cd` command.
+5. Compile the Java files using the command `javac *.java`. This will create the necessary .class files.
+6. Run the `MainProgram` using the command `java MainProgram`.
 
 ## Test Cases
 
